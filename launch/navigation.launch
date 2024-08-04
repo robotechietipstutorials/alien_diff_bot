@@ -1,0 +1,18 @@
+<launch>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(find alien_diff_bot)/maps/homemap.yaml"/>
+
+  <!-- AMCL -->
+  <include file="$(find alien_diff_bot)/launch/amcl.launch"/>
+
+
+  <!-- move_base -->
+  <include file="$(find alien_diff_bot)/launch/move_base.launch"/>
+
+
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find alien_diff_bot)/rviz/rviz.rviz"/>
+  
+</launch>

@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<robot name="alien_diff_bot">
+
+      <material name="silver">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
+<material name="black">
+  <color rgba="0 0 0 1"/>
+</material>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.2"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.08" radius="0.155"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.015" iyy="0.0375" izz="0.0375" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <link name="caster">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.05"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.08" radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="caster_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="caster"/>
+    <origin rpy="0 0 0" xyz="0.15 0 0"/>
+  </joint>
+
+  <link name="front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="front_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="caster"/>
+    <child link="front_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="0.05 0 -.05"/>
+  </joint>
+  <link name="back_caster">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.05"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.08" radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="back_caster_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="back_caster"/>
+    <origin rpy="0 0 0" xyz="-0.15 0 0"/>
+  </joint>
+
+  <link name="back_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="back_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="back_caster"/>
+    <child link="back_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="0.05 0 -.05"/>
+  </joint>
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="0 -0.16 -.05"/>
+  </joint>
+
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.035"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin rpy="-1.5708 0 0" xyz="0 0.16 -.05"/>
+  </joint>
+  <link name="middle_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.15"/>
+      </geometry>
+      <material name="silver">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.3" radius="0.15"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.015" iyy="0.0375" izz="0.0375" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="middle_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="middle_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+  </joint>
+  <link name="top_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+      <material name="silver"/>
+    </collision> 
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="top_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="middle_link"/>
+    <child link="top_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.15"/>
+  </joint>
+  <link name="neck_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.05"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.05"/>
+      </geometry>
+      <material name="silver"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="neck_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="top_link"/>
+    <child link="neck_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.175"/>
+    <limit effort="30" velocity="1.0" lower="-0.7" upper="0.7" />
+  </joint>
+  <link name="face_link">
+    <visual>
+      <geometry>
+        <box size="0.125 0.275 0.125"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.125 0.275 0.125"/>
+      </geometry>
+      <material name="silver"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="face_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="neck_link"/>
+    <child link="face_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.08"/>
+  </joint>
+  <link name="eye_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.23  0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.23 0.06"/>
+
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="eye_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="face_link"/>
+    <child link="eye_link"/>
+    <origin rpy="0 0 0" xyz="0.07 0 0.02"/>
+  </joint>
+  <link name="antennae_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+  <joint name="antennae_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="face_link"/>
+    <child link="antennae_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.08"/>
+  </joint>
+  <link name="laser_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.02"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+    </inertial> 
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="antennae_link"/>
+    <child link="laser_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.025"/>
+  </joint>
+  <gazebo reference="base_link">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="middle_link">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="top_link">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="neck_link">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="face_link">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="castor">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="back_castor">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="front_wheel">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="back_wheel">
+     <material>Gazebo/Silver</material>
+  </gazebo>
+  <gazebo reference="left_wheel">
+     <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+     <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="eye_link">
+     <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="antennae_link">
+     <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="sphere_link">
+     <material>Gazebo/Black</material>
+  </gazebo>
+<gazebo>
+	<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+	<leftJoint>left_wheel_joint</leftJoint>
+	<rightJoint>right_wheel_joint</rightJoint>
+	<robotBaseFrame>base_footprint</robotBaseFrame>
+	<wheelSeparation>0.32</wheelSeparation>
+	<wheelDiameter>0.07</wheelDiameter>
+	<publishWheelJointState>true</publishWheelJointState>
+	<commandTopic>cmd_vel</commandTopic>
+	<odometryTopic>odom</odometryTopic>
+	<odometryFrame>odom</odometryFrame>
+	<publishWheelTF>false</publishWheelTF>
+	<publishOdomTF>true</publishOdomTF>
+
+	<wheelAcceleration>0</wheelAcceleration>
+	<wheelTorque>5</wheelTorque>
+	<updateRate>100</updateRate>
+	<publishTf>1</publishTf>
+	</plugin>
+</gazebo>  
+<gazebo reference="laser_link">
+<sensor type="gpu_ray" name="head_hokuyo_sensor">
+<pose>0 0 0 0 0 0</pose>
+<visualize>false</visualize>
+<update_rate>40</update_rate>
+<ray>
+<scan>
+<horizontal>
+<samples>720</samples>
+<resolution>1</resolution>
+<min_angle>-1.570796</min_angle>
+<max_angle>1.570796</max_angle>
+</horizontal>
+</scan>
+<range>
+
+<min>0.10</min>
+<max>30.0</max>
+<resolution>0.01</resolution>
+</range>
+<noise>
+<type>gaussian</type>
+<!-- Noise parameters based on published spec for Hokuyo laser
+achieving "+-30mm" accuracy at range < 10m. A mean of 0.0m and stddev of 0.01m will put
+99.7% of samples within 0.03m of the true reading. -->
+<mean>0.0</mean>
+<stddev>0.01</stddev>
+</noise>
+</ray>
+<plugin name="gazebo_ros_head_hokuyo_controller"
+
+filename="libgazebo_ros_gpu_laser.so">
+
+<topicName>/scan</topicName>
+<frameName>laser_link</frameName>
+</plugin>
+</sensor>
+</gazebo>
+<link name="imu_link">
+<visual>
+<geometry>
+<sphere radius="0.02"/>
+</geometry>
+<material name="black"/>
+</visual>
+<collision>
+<geometry>
+<sphere radius="0.02"/>
+</geometry>
+<material name="black"/>
+</collision>
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="0.00083" iyy="0.00083" izz="0.000167" ixy="0" ixz="0" iyz="0"/>
+</inertial>
+
+</link>
+<joint name="imu_joint" type="fixed">
+
+<axis xyz="0 0 1"/>
+<parent link="base_link"/>
+<child link="imu_link"/>
+<origin rpy="0 0 0" xyz="0 0 0.1"/>
+</joint>
+<gazebo reference="imu_link">
+<sensor name="gazebo_imu" type="imu">
+<plugin name="gazebo_imu" filename="libgazebo_ros_imu_sensor.so">
+<updateRateHZ>30.0</updateRateHZ>
+<topicName>/imu</topicName>
+<frameName>imu_link</frameName>
+</plugin>
+</sensor>
+<material>Gazebo/Blue</material>
+
+</gazebo>  
+
+</robot>
+
+
+
+
